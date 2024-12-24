@@ -1,0 +1,577 @@
+{
+  "id": "5f610950-21db-4e03-aab0-98bdca184a20",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.Chat": {
+      "name": "Chat",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "messages": {
+          "name": "messages",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.dispatch_details": {
+      "name": "dispatch_details",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "location_code": {
+          "name": "location_code",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "goods_issue_reference_number": {
+          "name": "goods_issue_reference_number",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_of_dispatch": {
+          "name": "date_of_dispatch",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quantity_cases_dispatched": {
+          "name": "quantity_cases_dispatched",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hours_from_peak_dispatch": {
+          "name": "hours_from_peak_dispatch",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.inventory_details": {
+      "name": "inventory_details",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "item_code": {
+          "name": "item_code",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "location": {
+          "name": "location",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "on_hand_inventory_quantity": {
+          "name": "on_hand_inventory_quantity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "on_hand_inventory_value": {
+          "name": "on_hand_inventory_value",
+          "type": "numeric(12, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cogs": {
+          "name": "cogs",
+          "type": "numeric(12, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "days_of_inventory": {
+          "name": "days_of_inventory",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "annual_demand": {
+          "name": "annual_demand",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "inventory_turnover": {
+          "name": "inventory_turnover",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "storage_location_code": {
+          "name": "storage_location_code",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "storage_area_code": {
+          "name": "storage_area_code",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sku_class_movement": {
+          "name": "sku_class_movement",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.picking_performance_details": {
+      "name": "picking_performance_details",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "location_code": {
+          "name": "location_code",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "receipt_peak_time_start": {
+          "name": "receipt_peak_time_start",
+          "type": "varchar(2255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "receipt_peak_time_end": {
+          "name": "receipt_peak_time_end",
+          "type": "varchar(225)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dispatch_peak_time_start": {
+          "name": "dispatch_peak_time_start",
+          "type": "varchar(2255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dispatch_peak_time_end": {
+          "name": "dispatch_peak_time_end",
+          "type": "varchar(225)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "shift_1_pickers": {
+          "name": "shift_1_pickers",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "shift_2_pickers": {
+          "name": "shift_2_pickers",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "shift_3_pickers": {
+          "name": "shift_3_pickers",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_pickers_per_day": {
+          "name": "total_pickers_per_day",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "orders_shift_1": {
+          "name": "orders_shift_1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "orders_shift_2": {
+          "name": "orders_shift_2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "orders_shift_3": {
+          "name": "orders_shift_3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_orders_per_day": {
+          "name": "total_orders_per_day",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "picks_shift_1": {
+          "name": "picks_shift_1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "picks_shift_2": {
+          "name": "picks_shift_2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "picks_shift_3": {
+          "name": "picks_shift_3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_picks_per_day": {
+          "name": "total_picks_per_day",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "parts_picked_per_day": {
+          "name": "parts_picked_per_day",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "working_hours_per_day": {
+          "name": "working_hours_per_day",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "time_walking_to_location": {
+          "name": "time_walking_to_location",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "time_reading_pick_list": {
+          "name": "time_reading_pick_list",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "time_locating_part": {
+          "name": "time_locating_part",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "time_for_picking": {
+          "name": "time_for_picking",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "waiting_time_forklift": {
+          "name": "waiting_time_forklift",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "time_to_consolidation_area": {
+          "name": "time_to_consolidation_area",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_picking_time": {
+          "name": "total_picking_time",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "orders_per_day_per_picker": {
+          "name": "orders_per_day_per_picker",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "orders_per_hour": {
+          "name": "orders_per_hour",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "orders_per_hour_per_picker": {
+          "name": "orders_per_hour_per_picker",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "picks_per_day_per_picker": {
+          "name": "picks_per_day_per_picker",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "picks_per_hour": {
+          "name": "picks_per_hour",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "picks_per_hour_per_picker": {
+          "name": "picks_per_hour_per_picker",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.shifts": {
+      "name": "shifts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "area": {
+          "name": "area",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "shift_1": {
+          "name": "shift_1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "shift_2": {
+          "name": "shift_2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "shift_3": {
+          "name": "shift_3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.picking_details": {
+      "name": "picking_details",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "item_code": {
+          "name": "item_code",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "location": {
+          "name": "location",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date": {
+          "name": "date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "order_number": {
+          "name": "order_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "picklist_number": {
+          "name": "picklist_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.overview": {
+      "name": "overview",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "time": {
+          "name": "time",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "category": {
+          "name": "category",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "value": {
+          "name": "value",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "metric": {
+          "name": "metric",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "country": {
+          "name": "country",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.receipt_details": {
+      "name": "receipt_details",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "location_code": {
+          "name": "location_code",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "grn_reference_number": {
+          "name": "grn_reference_number",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_of_receipt": {
+          "name": "date_of_receipt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quantity_cases_received": {
+          "name": "quantity_cases_received",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hours_from_peak": {
+          "name": "hours_from_peak",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
